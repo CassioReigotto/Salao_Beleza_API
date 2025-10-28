@@ -1,2 +1,2 @@
 # Salao_Beleza_API
-Api em desenvolvimento para estudos voltado a JAVA 25
+Api em desenvolvimento para estudos voltado a arquitetura hexagonal, java, spring, autenticação, testes unitarios, entre outros...
