@@ -41,6 +41,13 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public Cpf getCpf() {
+        return cpf;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
 
     public String getTelefone() {
         return telefone;

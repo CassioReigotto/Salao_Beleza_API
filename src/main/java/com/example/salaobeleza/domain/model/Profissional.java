@@ -4,6 +4,8 @@ import com.example.salaobeleza.domain.model.enums.Especialidade;
 import com.example.salaobeleza.domain.model.valueobject.Disponibilidade;
 import com.example.salaobeleza.domain.model.valueobject.Email;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class Profissional  {
@@ -25,6 +27,14 @@ public class Profissional  {
         this.disponibilidade = disponibilidade;
     }
 
+
+
+    public Profissional(UUID id, String nome, Email email, LocalTime horarioFim,  String name, DayOfWeek diaSemana, LocalTime horarioInicio, LocalTime horarioFim2, String telefone) {
+
+    }
+
+
+
     public UUID getId() {
         return id;
     }
@@ -41,6 +51,21 @@ public class Profissional  {
         this.nome = nome;
     }
 
+    public Email getEmail() {
+        return email;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
 
     public String getTelefone() {
         return telefone;

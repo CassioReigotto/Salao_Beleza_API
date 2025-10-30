@@ -1,8 +1,11 @@
 package com.example.salaobeleza.infrastructure.repository.entity;
 
 import com.example.salaobeleza.domain.model.enums.Especialidade;
+import com.example.salaobeleza.domain.model.valueobject.Email;
 import jakarta.persistence.*;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -10,35 +13,40 @@ import java.util.UUID;
 public class ProfissionalEntity {
 
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, length = 254)
     private String nome;
 
-    @Column(nullable = false, length = 254)
     private String email;
 
-    @Column(unique = false,length = 15)
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
-    @Column(nullable = false, length = 50)
-    private String disponibilidade;
+    private DayOfWeek diaSemana;
 
-    protected ProfissionalEntity() {}
+    private LocalTime horarioInicio;
+    private LocalTime horarioFim;
 
-    public ProfissionalEntity(UUID id, String nome, String email, String telefone, Especialidade especialidade, String disponibilidade) {
+    public ProfissionalEntity() {}
+
+    public ProfissionalEntity(UUID id, String nome, String email, String telefone, Especialidade especialidade, DayOfWeek diaSemana, LocalTime horarioInicio, LocalTime horarioFim) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.especialidade = especialidade;
-        this.disponibilidade = disponibilidade;
+        this.diaSemana = diaSemana;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
     }
+
+    public ProfissionalEntity(UUID id, String nome, String telefone, Email email, Especialidade especialidade, LocalTime horarioInicio, LocalTime horarioFim, DayOfWeek diaSemana) {
+
+    }
+
 
     public UUID getId() {
         return id;
@@ -80,11 +88,27 @@ public class ProfissionalEntity {
         this.especialidade = especialidade;
     }
 
-    public String getDisponibilidade() {
-        return disponibilidade;
+    public DayOfWeek getDiaSemana() {
+        return diaSemana;
     }
 
-    public void setDisponibilidade(String disponibilidade) {
-        this.disponibilidade = disponibilidade;
+    public void setDiaSemana(DayOfWeek diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public LocalTime getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(LocalTime horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public LocalTime getHorarioFim() {
+        return horarioFim;
+    }
+
+    public void setHorarioFim(LocalTime horarioFim) {
+        this.horarioFim = horarioFim;
     }
 }
