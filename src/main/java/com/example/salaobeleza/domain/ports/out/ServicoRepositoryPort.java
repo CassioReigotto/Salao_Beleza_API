@@ -9,9 +9,9 @@ import java.util.UUID;
 
 public interface ServicoRepositoryPort {
 
-    Servico findById(UUID id);
-    Optional<Servico> findByNome(String nome);
-    List<Servico> findAll();
+    Servico salvar(Servico servico);
+    Optional<Servico> findById(UUID id);
+    List<Servico> buscarTodos();
     Servico atualizar(Servico servico);
     void remover(UUID id);
 

@@ -14,10 +14,10 @@ public interface ProfissionalMapper {
     @Mapping(source = "disponibilidade.diaSemana", target = "diaSemana")
     @Mapping(source = "disponibilidade.horarioInicio", target = "horarioInicio")
     @Mapping(source = "disponibilidade.horarioFim", target = "horarioFim")
-    public ProfissionalEntity profissionalToEntity(Profissional profissional);
+     ProfissionalEntity ProfissionalDomainToProfissionalToEntity(Profissional profissional);
 
     @InheritInverseConfiguration
-    public Profissional ProfissionalEntityToProfissionalDomain(ProfissionalEntity profissionalEntity);
+     Profissional ProfissionalEntityToProfissionalDomain(ProfissionalEntity profissionalEntity);
 
 
 }

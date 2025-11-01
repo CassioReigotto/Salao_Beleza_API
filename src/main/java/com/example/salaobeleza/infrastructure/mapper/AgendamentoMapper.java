@@ -10,9 +10,9 @@ import org.mapstruct.Mapping;
 public interface AgendamentoMapper {
 
     @Mapping(source = "statusAgendamento" , target = "status")
-    public AgendamentoEntity agendamentoToAgendamentoEntity(Agendamento agendamento);
+     AgendamentoEntity agendamentoDomainToAgendamentoEntity(Agendamento agendamento);
 
 
     @InheritInverseConfiguration
-    public Agendamento agendamentoEntityToAgendamentoDomain(AgendamentoEntity agendamentoEntity);
+     Agendamento agendamentoEntityToAgendamentoDomain(AgendamentoEntity agendamentoEntity);
 }

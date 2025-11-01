@@ -8,8 +8,8 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ServicoMapper {
 
-    public ServicoEntity servicotoToServicoEntity(Servico servico);
+     ServicoEntity servicoDomaintoToServicoEntity(Servico servico);
 
-    public Servico servicoEntityToServicoDomain(ServicoEntity servicoEntity);
+     Servico servicoEntityToServicoDomain(ServicoEntity servicoEntity);
 
 }
