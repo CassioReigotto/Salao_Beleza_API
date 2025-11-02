@@ -7,8 +7,6 @@ import com.example.salaobeleza.infrastructure.repository.entity.ClienteEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.ValueMapping;
-import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
 public interface ClienteMapper {
@@ -16,14 +14,26 @@ public interface ClienteMapper {
 
     @Mapping(source = "cpf.numero" , target = "cpf")
     @Mapping(source = "email.endereco" , target = "email")
-    public ClienteEntity clienteDomainToClienteEntity(Cliente cliente);
+     ClienteEntity clienteDomainToClienteEntity(Cliente cliente);
 
 
     @InheritInverseConfiguration
-    public Cliente clienteEntityToClienteDomain(ClienteEntity clienteEntity);
+     Cliente clienteEntityToClienteDomain(ClienteEntity clienteEntity);
 
 
+    default Email map(String value) {
+        return new Email(value);
+    }
 
+    default String map(Email email) {
+        return email != null ? email.getEndereco() : null;
+    }
 
+    default Cpf mapCpf(String value) {
+        return new Cpf(value);
+    }
 
+    default String mapCpf(Cpf cpf) {
+        return cpf != null ? cpf.getNumero() : null;
+    }
 }
