@@ -57,15 +57,17 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ClienteResponseDTO> atualizar (@PathVariable("id") UUID id, @Valid @RequestBody ClienteRequestDTO clienteRequestDTO){
+
         var clienteAtualizado = clienteDTOMapper.clienteRequestDTOToClienteDomain(clienteRequestDTO);
+        clienteAtualizado.setId(id);
         var cliente =  clienteUseCase.atualizar(clienteAtualizado);
         return ResponseEntity.ok(clienteDTOMapper.clienteDomainToClienteResponseDTO(cliente));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> remover (@PathVariable("id") UUID id){
-       clienteUseCase.deletarPorId(id);
-       return ResponseEntity.ok("Cliente excluido com sucesso");
+        clienteUseCase.deletarPorId(id);
+        return ResponseEntity.ok("Cliente excluido com sucesso");
     }
 
 }
