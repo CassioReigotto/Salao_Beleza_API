@@ -1,7 +1,5 @@
 package com.example.salaobeleza.infrastructure.repository.entity;
 
-import com.example.salaobeleza.domain.model.valueobject.Cpf;
-import com.example.salaobeleza.domain.model.valueobject.Email;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -36,9 +34,7 @@ public class ClienteEntity {
         this.telefone = telefone;
     }
 
-    public ClienteEntity(UUID id, String nome, Email email, Cpf cpf) {
 
-    }
 
     public UUID getId() {
         return id;

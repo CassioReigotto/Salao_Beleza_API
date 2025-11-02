@@ -4,8 +4,6 @@ import com.example.salaobeleza.domain.model.enums.Especialidade;
 import com.example.salaobeleza.domain.model.valueobject.Disponibilidade;
 import com.example.salaobeleza.domain.model.valueobject.Email;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 import java.util.UUID;
 
 public class Profissional  {
@@ -25,12 +23,6 @@ public class Profissional  {
         this.telefone = telefone;
         this.especialidade = especialidade;
         this.disponibilidade = disponibilidade;
-    }
-
-
-
-    public Profissional(UUID id, String nome, Email email, LocalTime horarioFim,  String name, DayOfWeek diaSemana, LocalTime horarioInicio, LocalTime horarioFim2, String telefone) {
-
     }
 
 
