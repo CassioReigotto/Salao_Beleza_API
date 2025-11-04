@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(".servicos")
+@RequestMapping("/servicos")
 public class ServicoController {
 
     private final ServicoUseCase servicoUseCase;
