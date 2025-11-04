@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Profissionais")
+@Table(name = "profissionais")
 public class ProfissionalEntity {
 
     @Id
@@ -25,9 +25,15 @@ public class ProfissionalEntity {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "dia_semana")
     private DayOfWeek diaSemana;
 
+
+    @Column(name = "horario_inicio", nullable = false)
     private LocalTime horarioInicio;
+
+    @Column(name = "horario_fim", nullable = false)
     private LocalTime horarioFim;
 
     public ProfissionalEntity() {}
@@ -44,7 +50,14 @@ public class ProfissionalEntity {
     }
 
     public ProfissionalEntity(UUID id, String nome, String telefone, Email email, Especialidade especialidade, LocalTime horarioInicio, LocalTime horarioFim, DayOfWeek diaSemana) {
-
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email.getEndereco();
+        this.especialidade = especialidade;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
+        this.diaSemana = diaSemana;
     }
 
 
