@@ -45,7 +45,7 @@ public class ProfissionalController {
     }
 
     @PostMapping
-    public ResponseEntity<ProfissionalResponseDTO> criar(@RequestBody ProfissionalRequestDTO profissionalRequestDTO){
+    public ResponseEntity<ProfissionalResponseDTO> criar(@Valid @RequestBody ProfissionalRequestDTO profissionalRequestDTO){
         var profissional = profissionalDTOMapper.profissionalRequestDTOToProfissionalDomain(profissionalRequestDTO);
         var criado = profissionalUseCase.criar(profissional);
         return ResponseEntity
