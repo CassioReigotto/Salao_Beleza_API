@@ -1,15 +1,18 @@
 package com.example.salaobeleza.application.dto.request;
 
-import com.example.salaobeleza.domain.model.enums.StatusAgendamento;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record AgendamentoRequestDTO(
-        UUID id,
+
+        @NotBlank(message = "Hora do agendamento obrigatorio")
         LocalDateTime dataHora,
-        StatusAgendamento status,
+        @NotBlank(message = "Id cliente obrigatorio")
         UUID clienteId,
+        @NotBlank(message = "Id servico obrigatorio")
         UUID servicoId,
+        @NotBlank(message = "Id profissional obrigatorio")
         UUID profissionalId
 ) {}
