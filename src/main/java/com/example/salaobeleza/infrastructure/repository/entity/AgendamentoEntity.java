@@ -16,7 +16,7 @@ public class AgendamentoEntity {
     private LocalDateTime dataHora;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private StatusAgendamento status;
 
     @ManyToOne(fetch = FetchType.LAZY)
