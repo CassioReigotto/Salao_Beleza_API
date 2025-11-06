@@ -10,20 +10,19 @@ public class Cliente {
 
     private UUID id;
     private String nome;
-    private  final  Cpf cpf;
-    private final Email email;
+    private  final  Cpf cpf = null ;
+    private final Email email = null;
     private String telefone;
 
 
-    public Cliente(UUID id, String nome, Cpf cpf, Email email, String telefone) {
+    public Cliente(UUID id, String nome,  String telefone) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
         this.telefone = telefone;
     }
 
-
+    public Cliente() {
+    }
 
     public UUID getId() {
         return id;

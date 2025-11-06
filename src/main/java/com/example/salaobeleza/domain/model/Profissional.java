@@ -25,6 +25,9 @@ public class Profissional  {
         this.disponibilidade = disponibilidade;
     }
 
+    public Profissional() {
+
+    }
 
 
     public UUID getId() {

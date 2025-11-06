@@ -1,18 +1,18 @@
 package com.example.salaobeleza.application.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record AgendamentoRequestDTO(
 
-        @NotBlank(message = "Hora do agendamento obrigatorio")
+        @NotNull(message = "Hora do agendamento obrigatorio")
         LocalDateTime dataHora,
-        @NotBlank(message = "Id cliente obrigatorio")
+        @NotNull(message = "Id cliente obrigatorio")
         UUID clienteId,
-        @NotBlank(message = "Id servico obrigatorio")
+        @NotNull(message = "Id servico obrigatorio")
         UUID servicoId,
-        @NotBlank(message = "Id profissional obrigatorio")
+        @NotNull(message = "Id profissional obrigatorio")
         UUID profissionalId
 ) {}

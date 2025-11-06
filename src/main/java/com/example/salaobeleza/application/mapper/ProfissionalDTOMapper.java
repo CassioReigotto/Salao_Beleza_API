@@ -7,19 +7,12 @@ import com.example.salaobeleza.domain.model.Profissional;
 import com.example.salaobeleza.domain.model.valueobject.Cpf;
 import com.example.salaobeleza.domain.model.valueobject.Email;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 
 @Mapper (componentModel = "spring")
 public interface ProfissionalDTOMapper {
 
-    @Mapping(
-            target = "disponibilidade",
-            expression = "java(new Disponibilidade("
-                    + "java.time.DayOfWeek.of(dto.diaSemana()), "
-                    + "dto.horarioInicio(), "
-                    + "dto.horarioFim()))"
-    )
+
     Profissional profissionalRequestDTOToProfissionalDomain (ProfissionalRequestDTO dto);
 
     ProfissionalResponseDTO profissionalDomainToResponseDTO (Profissional profissional);

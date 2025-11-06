@@ -4,6 +4,9 @@ import com.example.salaobeleza.domain.model.Agendamento;
 import com.example.salaobeleza.domain.ports.out.AgendamentoRepositoryPort;
 import com.example.salaobeleza.infrastructure.mapper.AgendamentoMapper;
 import com.example.salaobeleza.infrastructure.repository.jpa.AgendamentoJpaRepository;
+import com.example.salaobeleza.infrastructure.repository.jpa.ClienteJpaRepository;
+import com.example.salaobeleza.infrastructure.repository.jpa.ProfissionalJpaRepository;
+import com.example.salaobeleza.infrastructure.repository.jpa.ServicoJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -16,19 +19,42 @@ public class AgendamentoRepositoryAdapter implements AgendamentoRepositoryPort {
 
     private final AgendamentoJpaRepository agendamentoJpaRepository;
     private final AgendamentoMapper agendamentoMapper;
+    private final ClienteJpaRepository clienteJpaRepository;
+    private final ServicoJpaRepository servicoJpaRepository;
+    private final ProfissionalJpaRepository profissionalJpaRepository;
 
-    public AgendamentoRepositoryAdapter(AgendamentoJpaRepository agendamentoJpaRepository, AgendamentoMapper agendamentoMapper) {
+    public AgendamentoRepositoryAdapter(AgendamentoJpaRepository agendamentoJpaRepository, AgendamentoMapper agendamentoMapper, ClienteJpaRepository clienteJpaRepository, ServicoJpaRepository servicoJpaRepository, ProfissionalJpaRepository profissionalJpaRepository) {
         this.agendamentoJpaRepository = agendamentoJpaRepository;
         this.agendamentoMapper = agendamentoMapper;
+        this.clienteJpaRepository = clienteJpaRepository;
+        this.servicoJpaRepository = servicoJpaRepository;
+        this.profissionalJpaRepository = profissionalJpaRepository;
     }
 
 
     @Override
     public Agendamento salvar(Agendamento agendamento) {
+
         var entity = agendamentoMapper.agendamentoDomainToAgendamentoEntity(agendamento);
-        var agendamentoJpa = agendamentoJpaRepository.save(entity);
-        return agendamentoMapper.agendamentoEntityToAgendamentoDomain(agendamentoJpa);
+
+        var cliente = clienteJpaRepository.findById(agendamento.getCliente().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
+
+        var servico = servicoJpaRepository.findById(agendamento.getServico().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Serviço não encontrado"));
+
+        var profissional = profissionalJpaRepository.findById(agendamento.getProfissional().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Profissional não encontrado"));
+
+        entity.setCliente(cliente);
+        entity.setServico(servico);
+        entity.setProfissional(profissional);
+
+        var salvo = agendamentoJpaRepository.save(entity);
+
+        return agendamentoMapper.agendamentoEntityToAgendamentoDomain(salvo);
     }
+
 
     @Override
     public Optional<Agendamento> buscarPorId(UUID id) {

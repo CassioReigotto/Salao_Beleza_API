@@ -12,8 +12,8 @@ import org.mapstruct.Mapping;
 public interface ClienteMapper {
 
 
-    @Mapping(source = "cpf.numero" , target = "cpf")
-    @Mapping(source = "email.endereco" , target = "email")
+    @Mapping(source = "cpf" , target = "cpf")
+    @Mapping(source = "email" , target = "email")
      ClienteEntity clienteDomainToClienteEntity(Cliente cliente);
 
 
