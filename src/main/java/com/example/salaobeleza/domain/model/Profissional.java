@@ -1,9 +1,10 @@
 package com.example.salaobeleza.domain.model;
 
 import com.example.salaobeleza.domain.model.enums.Especialidade;
-import com.example.salaobeleza.domain.model.valueobject.Disponibilidade;
 import com.example.salaobeleza.domain.model.valueobject.Email;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class Profissional  {
@@ -13,22 +14,28 @@ public class Profissional  {
     private Email email;
     private String telefone;
     private Especialidade especialidade;
-    private Disponibilidade disponibilidade;
 
+    private DayOfWeek diaSemana;
+    private LocalTime horarioInicio;
+    private LocalTime horarioFim;
 
-    public Profissional(UUID id, String nome, Email email, String telefone, Especialidade especialidade, Disponibilidade disponibilidade) {
+    public Profissional(UUID id, String nome, Email email, String telefone,
+                        Especialidade especialidade,
+                        DayOfWeek diaSemana,
+                        LocalTime horarioInicio,
+                        LocalTime horarioFim) {
+
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.especialidade = especialidade;
-        this.disponibilidade = disponibilidade;
+        this.diaSemana = diaSemana;
+        this.horarioInicio = horarioInicio;
+        this.horarioFim = horarioFim;
     }
 
-    public Profissional() {
-
-    }
-
+    public Profissional() {}
 
     public UUID getId() {
         return id;
@@ -54,14 +61,6 @@ public class Profissional  {
         this.email = email;
     }
 
-    public Disponibilidade getDisponibilidade() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(Disponibilidade disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -78,4 +77,27 @@ public class Profissional  {
         this.especialidade = especialidade;
     }
 
+    public DayOfWeek getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(DayOfWeek diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public LocalTime getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(LocalTime horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public LocalTime getHorarioFim() {
+        return horarioFim;
+    }
+
+    public void setHorarioFim(LocalTime horarioFim) {
+        this.horarioFim = horarioFim;
+    }
 }

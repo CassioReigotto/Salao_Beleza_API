@@ -6,23 +6,26 @@ import com.example.salaobeleza.infrastructure.repository.entity.ProfissionalEnti
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.time.DayOfWeek;
+
 
 @Mapper(componentModel = "spring")
 public interface ProfissionalMapper {
 
     @Mapping(source = "email.endereco" , target = "email")
     @Mapping(source = "especialidade", target = "especialidade", defaultValue = "SEM_ESPECIALIDADE")
-    @Mapping(source = "disponibilidade.diaSemana", target = "diaSemana")
-    @Mapping(source = "disponibilidade.horarioInicio", target = "horarioInicio")
-    @Mapping(source = "disponibilidade.horarioFim", target = "horarioFim")
     ProfissionalEntity ProfissionalDomainToProfissionalToEntity(Profissional profissional);
 
     @Mapping(target = "email", expression = "java(new com.example.salaobeleza.domain.model.valueobject.Email(profissionalEntity.getEmail()))")
-    @Mapping(target = "disponibilidade", expression = "java(new com.example.salaobeleza.domain.model.valueobject.Disponibilidade(" +
-            "profissionalEntity.getDiaSemana(), " +
-            "profissionalEntity.getHorarioInicio(), " +
-            "profissionalEntity.getHorarioFim()))")
     Profissional ProfissionalEntityToProfissionalDomain(ProfissionalEntity profissionalEntity);
+
+    default DayOfWeek map(Integer value) {
+        return value != null ? DayOfWeek.of(value) : null;
+    }
+
+    default Integer map(DayOfWeek value) {
+        return value != null ? value.getValue() : null;
+    }
 
 
 }
